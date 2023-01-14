@@ -22,6 +22,7 @@ const Container = styled.div`
   align-items: center;
   width: 100%;
   display: flex;
+  color: ${({ theme }) => theme.text};
 `;
 
 const Avatar = styled.img`
@@ -80,7 +81,16 @@ const Input = styled.input`
   width: 100%;
 `;
 
-
+const Send = styled.div`
+padding: 5px 15px;
+  border: 1px solid ;
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+`
 const Comment = ({ comment , setComments, videoId}) => {
   const [channel, setChannel] = useState({});
   const { currentUser } = useSelector((state) => state.user);
@@ -144,7 +154,7 @@ const Comment = ({ comment , setComments, videoId}) => {
       <Input  type="text"
         value={editedText}
         onChange={event => setEditedText(event.target.value)}/>
-        <SendOutlinedIcon onClick={handleSubmit} />
+        <Send onClick={handleSubmit} >Send</Send>
     </NewComment>
       
     
