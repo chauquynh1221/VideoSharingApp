@@ -19,6 +19,8 @@ import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import SettingsBrightnessOutlinedIcon from "@mui/icons-material/SettingsBrightnessOutlined";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { SnackbarProvider, useSnackbar } from 'notistack';
+
 const Container = styled.div`
   flex: 1;
   background-color: ${({ theme }) => theme.bgLighter};
@@ -49,7 +51,6 @@ const Item = styled.div`
   gap: 20px;
   cursor: pointer;
   padding: 7.5px 0px;
-
   &:hover {
     background-color: ${({ theme }) => theme.soft};
   }
@@ -84,7 +85,13 @@ const Title = styled.h2`
 
 const Menu = ({ darkMode, setDarkMode }) => {
   const { currentUser } = useSelector((state) => state.user);
-
+  const { enqueueSnackbar } = useSnackbar();
+  const handleClickVariantf = (variant) => {
+    enqueueSnackbar('You need to log in to continue..', { variant } );
+  };
+    const handleClick = () =>{
+      handleClickVariantf('error')
+    }
   return (
     <Container>
       <Wrapper>
@@ -105,6 +112,7 @@ const Menu = ({ darkMode, setDarkMode }) => {
             Explore
           </Item>
         </Link>
+        {currentUser?
         <Link
           to="subscriptions"
           style={{ textDecoration: "none", color: "inherit" }}
@@ -114,7 +122,20 @@ const Menu = ({ darkMode, setDarkMode }) => {
             Subscriptions
           </Item>
         </Link>
+        :
+        <div onClick={handleClick}
+          
+          style={{ textDecoration: "none", color: "inherit" }}
+        >
+          <Item>
+            <SubscriptionsOutlinedIcon />
+            Subscriptions
+          </Item>
+        </div>
+        }
         <Hr />
+        { currentUser ?
+        <div>
         <Item>
           <VideoLibraryOutlinedIcon />
           Library
@@ -123,6 +144,20 @@ const Menu = ({ darkMode, setDarkMode }) => {
           <HistoryOutlinedIcon />
           History
         </Item>
+        </div>
+        :
+         <div>
+          <Item onClick={handleClick}>
+          <VideoLibraryOutlinedIcon />
+          Library
+        </Item>
+        <Item onClick={handleClick}>
+          <HistoryOutlinedIcon />
+          History
+        </Item>
+        </div>
+        
+        }
         <Hr />
         <Title>BEST OF CHAUTUBE</Title>
         <Item>

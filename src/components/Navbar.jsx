@@ -260,19 +260,6 @@ const Navbar = () => {
           ) : (
             <>
             <Button2 onClick={() => setOpennn(true)}>LOGIN</Button2>
-            {/* <Modal
-              open={opennn}
-              onClose={handleCloses}
-              aria-labelledby="parent-modal-title"
-              aria-describedby="parent-modal-description"
-            >
-              <div style={{"alignItem" : "center"}}>
-              <Box   >
-                    <div style={{"alignItem" : "center"}}>chau dwp trai</div>
-    
-              </Box>
-              </div>
-            </Modal> */}
             </>
           )}
         </Wrapper>

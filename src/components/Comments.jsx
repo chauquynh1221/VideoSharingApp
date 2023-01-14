@@ -6,14 +6,25 @@ import Comment from "./Comment";
 import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
 
 
-const Container = styled.div``;
+const Container = styled.div`
+color: ${({ theme }) => theme.text};
+`;
 
 const NewComment = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
 `;
-
+const Send = styled.div`
+padding: 5px 15px;
+  border: 1px solid ;
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+`
 const Avatar = styled.img`
   width: 50px;
   height: 50px;
@@ -31,7 +42,7 @@ const Input = styled.input`
 `;
 
 
-const Comments = ({videoId}) => {
+const Comments = ({videoId, handleClick}) => {
   const { currentUser } = useSelector((state) => state.user);
 
   const [comments, setComments] = useState([]);
@@ -48,7 +59,10 @@ const Comments = ({videoId}) => {
   }, [videoId]);
 
   
-
+  const handleClickk = (e) => {
+    e.preventDefault();
+    handleClick();
+  }
   
   const handleChanges = e => {
     setInput(e.target.value)
@@ -71,11 +85,11 @@ const Comments = ({videoId}) => {
     
 
     <Container>
-      { currentUser ? <NewComment>
-        <Avatar src={currentUser.img} />
+      <NewComment>
+        {currentUser ? <Avatar src={currentUser.img} /> : "" }
         <Input  value={input}  onChange={handleChanges} id = "input" placeholder="Add a comment..." />
-        <SendOutlinedIcon onClick={send}/>
-      </NewComment> : ""}
+        {currentUser ? <Send  onClick={send}>Send</Send> : <Send onClick={handleClickk}>Send</Send>}
+      </NewComment> 
       {comments.map((comment,index)=>(
         <Comment key={index} videoId = {videoId} setComments = {setComments}  comment={comment}/>
       ))}

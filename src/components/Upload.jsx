@@ -9,16 +9,18 @@ import {
 import app from "../firebase";
 import {axiosInstance} from ".././config"
 import { useNavigate } from "react-router-dom";
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
 
 
 const Container = styled.div`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: #000000a7;
-  display: flex;
+  // width: 100%;
+  // height: 100%;
+  // position: absolute;
+  // top: 0;
+  // left: 0;
+  // background-color: #000000a7;
+  // display: flex;
   align-items: center;
   justify-content: center;
 `;
@@ -45,7 +47,7 @@ const Title = styled.h1`
 `;
 
 const Input = styled.input`
-  border: 1px solid ${({ theme }) => theme.soft};
+  border: 0.3px solid ;
   color: ${({ theme }) => theme.text};
   border-radius: 3px;
   padding: 10px;
@@ -53,7 +55,7 @@ const Input = styled.input`
   z-index: 999;
 `;
 const Desc = styled.textarea`
-  border: 1px solid ${({ theme }) => theme.soft};
+  border: 0.3px solid ;
   color: ${({ theme }) => theme.text};
   border-radius: 3px;
   padding: 10px;
@@ -87,7 +89,15 @@ const Upload = ({ setOpen }) => {
       return { ...prev, [e.target.name]: e.target.value };
     });
   };
-
+  const style = {
+    
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    boxShadow: 24,
+    boderRadius: '5%'
+  };
   const handleTags = (e) => {
     setTags(e.target.value.split(","));
   };
@@ -125,7 +135,6 @@ const Upload = ({ setOpen }) => {
       }
     );
   };
-
   useEffect(() => {
     video && uploadFile(video , "videoUrl");
   }, [video]);
@@ -144,6 +153,12 @@ const Upload = ({ setOpen }) => {
 
   return (
     <Container>
+        <Modal
+        open={true}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+         <Box sx={style}>
       <Wrapper>
         <Close onClick={() => setOpen(false)}>X</Close>
         <Title>Upload a New Video</Title>
@@ -186,6 +201,8 @@ const Upload = ({ setOpen }) => {
         )}
         <Button onClick={handleUpload}>Upload</Button>
       </Wrapper>
+      </Box>
+      </Modal>
     </Container>
   );
 };

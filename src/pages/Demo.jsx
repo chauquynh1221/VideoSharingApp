@@ -43,11 +43,17 @@ export default function Demo( {setOpennn }) {
 
 
   const handleClickVariant = (variant)  => {
-    enqueueSnackbar('Đăng nhập thành công', { variant });
+    enqueueSnackbar('Logged in successfully', { variant });
   };
     const handleClickVariantf = (variant) => {
-      enqueueSnackbar('Đăng nhập thất bại', { variant } );
+      enqueueSnackbar('Login failed', { variant } );
     };
+    const handleClickVariantff = (variant)  => {
+      enqueueSnackbar('Sign Up Success', { variant });
+    };
+      const handleClickVariantfff = (variant) => {
+        enqueueSnackbar('Registration failed', { variant } );
+      };
   const handleLogin = async (e) => {
       e.preventDefault();
     dispatch(loginStart());
@@ -78,13 +84,15 @@ export default function Demo( {setOpennn }) {
             console.log(res)
             dispatch(loginSuccess(res.data));
             setOpennn(false)
-
+            handleClickVariant('success')
             navigate("/")
             
           });
       })
       .catch((error) => {
         dispatch(loginFailure());
+      handleClickVariantf('error')
+
       });
   };
 
@@ -94,10 +102,10 @@ export default function Demo( {setOpennn }) {
     e.preventDefault();
     try {
       await axiosInstance.post("/signup", { name,email, password })
-      window.alert("Đăng ký thành công")
+      handleClickVariantff('success')
       setOpennn(false)
     } catch (error) {
-      window.alert("Đăng ký không thành công")
+      handleClickVariantfff('error')
     }
   }
   return (
@@ -242,7 +250,6 @@ const MainContainer = styled.div`
 
 const WelcomeText = styled.h2`
   margin: 3rem 0 2rem 0;
-  color: black;
 `;
 
 const InputContainer = styled.div`

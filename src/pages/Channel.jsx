@@ -15,9 +15,11 @@ import List from "./List"
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import { SnackbarProvider, useSnackbar } from 'notistack';
 
 
 const Container = styled.div`
+color: ${({ theme }) => theme.text};
 margin : 20px
 `
 const ChannelCover = styled.div`
@@ -69,6 +71,11 @@ color: var(--text-color);
 color: ${({ theme }) => theme.text};
 
  `
+
+
+ const style = {
+  color : '#1976d2'
+};
 const Sub = styled.button`
 background-color: #cc1a00;
 font-weight: 500;
@@ -122,7 +129,13 @@ const handleChange = (event, newValue) => {
 setValue(newValue);
 };
 const path = useLocation().pathname.split("/")[2];
-
+const { enqueueSnackbar } = useSnackbar();
+  const handleClickVariantf = (variant) => {
+    enqueueSnackbar('You need to log in to continue..', { variant } );
+  };
+    const handleClick = () =>{
+      handleClickVariantf('error')
+    }
 useEffect( () => {
 const fetchUser = async () => {
 try {
@@ -180,23 +193,23 @@ return (
         {currentUser.subscribedUsers?.includes(channel._id)
         ? "SUBSCRIBED"
         : "SUBSCRIBE"}
-      </Sub> : "" }
+      </Sub> : <Sub onClick={handleClick}>SUBSCRIBE</Sub> }
     </ChannelInfor1>
     <Box sx={{ width: '100%' }} >
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs 
          value={value} onChange={handleChange} aria-label="basic tabs example">
       
-          <Tab 
+          <Tab sx={style}
            label="HOME" {...a11yProps(0)} />
            
-          <Tab 
+          <Tab sx={style}
           label="VIDEOS" {...a11yProps(1)} />
-          <Tab 
+          <Tab  sx={style} 
           label="PLAYLISTS" {...a11yProps(2)} />
-          <Tab 
+          <Tab  sx={style}
           label="CHANNELS SUBSCRIBED" {...a11yProps(3)} />
-          <Tab 
+          <Tab  sx={style}
           label="ABOUT" {...a11yProps(4)} />
           
         </Tabs>
@@ -221,13 +234,13 @@ return (
         </Video>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Channel subscribed 
+        comming soon 
       </TabPanel>
       <TabPanel value={value} index={3}>
-        comming soon 4
+      Channel subscribed 
       </TabPanel>
       <TabPanel value={value} index={4}>
-        comming soon 5
+        comming soon 
       </TabPanel>
     </Box>
   </ChannelInfor>

@@ -62,7 +62,7 @@ const Container = styled.div`
   cursor: pointer;
   display: ${(props) => props.type === "sm" && "flex"};
   gap: 10px;;
-  padding : 5px;
+  padding : 10px;
 `;
 
 const Image = styled.img`

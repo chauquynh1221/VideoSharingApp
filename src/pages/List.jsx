@@ -6,7 +6,6 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import {axiosInstance} from ".././config"
 const Container = styled.div`
   display: flex;
-  align-items: center;
   flex-wrap: wrap;
 `;
 

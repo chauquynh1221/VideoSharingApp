@@ -32,7 +32,7 @@ function App() {
 
   return (
     <SnackbarProvider>
-    <ThemeProvider theme={darkMode ?  lightTheme : darkTheme }>
+    <ThemeProvider theme={darkMode ? darkTheme  : lightTheme }>
       <Container>
         <BrowserRouter>
           <Menu darkMode={darkMode} setDarkMode={setDarkMode} />
