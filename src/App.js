@@ -13,6 +13,7 @@ import { useSelector } from "react-redux";
 import Channel from "./pages/Channel";
 import { SnackbarProvider} from 'notistack';
 import { fetchStart } from "./redux/videoSlice";
+import Homecustom from "./pages/Homecustom";
 
 const Container = styled.div`
   display: flex;
@@ -44,6 +45,9 @@ function App() {
                   <Route index element={<Home type="random"/>} />
                   <Route path="trends" element={<Home type="trend" />} />
                   <Route path="subscriptions" element={<Home type="sub" />} />
+                  <Route path=":slug" element={<Homecustom />} />
+                  
+
                   <Route path="search" element={<Search />} />
                   <Route path="myChannel">
                     <Route path=":id" element={<Channel />} />

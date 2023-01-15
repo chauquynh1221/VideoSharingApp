@@ -160,30 +160,42 @@ const Menu = ({ darkMode, setDarkMode }) => {
         }
         <Hr />
         <Title>BEST OF CHAUTUBE</Title>
-        <Item>
+        <Link to="Hot" style={{ textDecoration: "none", color: "inherit" }}>
+          <Item>
           <LibraryMusicOutlinedIcon />
           Music
-        </Item>
+          </Item>
+        </Link>
+        <Link to="Sports" style={{ textDecoration: "none", color: "inherit" }}>
         <Item>
           <SportsBasketballOutlinedIcon />
           Sports
         </Item>
+        </Link>
+        <Link to="Movies" style={{ textDecoration: "none", color: "inherit" }}>
         <Item>
           <MovieOutlinedIcon />
           Movies
         </Item>
+        </Link>
+        <Link to="News" style={{ textDecoration: "none", color: "inherit" }}>
         <Item>
           <ArticleOutlinedIcon />
           News
         </Item>
+        </Link>
+        
         <Item>
           <FlagOutlinedIcon />
           Report
         </Item>
+       
+        
         <Item>
           <HelpOutlineOutlinedIcon />
           Help
         </Item>
+      
         <Item onClick={() => setDarkMode(!darkMode)}>
           <SettingsBrightnessOutlinedIcon />
           {darkMode ? "Light" : "Dark"} Mode

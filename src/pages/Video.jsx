@@ -143,7 +143,6 @@ const Video = () => {
   useEffect( () => {
       const fetchData = async () => {
           try {
-            
             const videoRs = await axiosInstance.get(`/video/find/${path}`)
             const channelRs = await axiosInstance.get(`/find/${videoRs.data.userId}`)
             setChannel(channelRs.data)
@@ -181,9 +180,7 @@ const Video = () => {
   return (
     <Container>
       <Content>
-        
         <VideoWrapper >
-         
         <VideoFrame id = "a" controls autoPlay 
         src={currentVideo?.videoUrl}
         width="900" height="500"  

@@ -56,6 +56,7 @@ const Search = styled.div`
   right: 0px;
   margin: auto;
   display: flex;
+  cursor: pointer;
   align-items: center;
   justify-content: space-between;
   padding: 5px;
@@ -88,6 +89,7 @@ const Button2 = styled.button`
 const User = styled.div`
   display: flex;
   align-items: center;
+  cursor: pointer;
   gap: 10px;
   font-weight: 500;
   color: ${({ theme }) => theme.text};

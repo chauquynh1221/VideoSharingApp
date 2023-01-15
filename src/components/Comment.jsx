@@ -13,6 +13,7 @@ const NewComment = styled.div`
   align-items: center;
   gap: 10px;
   padding-top : 10px;
+  color: ${({ theme }) => theme.text};
 `;
 
 const Container = styled.div`
@@ -29,6 +30,7 @@ const Avatar = styled.img`
   width: 50px;
   height: 50px;
   border-radius: 50%;
+  color: ${({ theme }) => theme.textSoft};
 `;
 
 const Details = styled.div`
@@ -41,6 +43,7 @@ const Details = styled.div`
 const Name = styled.span`
   font-size: 13px;
   font-weight: 500;
+  color: ${({ theme }) => theme.textSoft};
 `;
 
 const Date = styled.span`
@@ -53,6 +56,7 @@ const Date = styled.span`
 const Text = styled.span`
   font-size: 14px;
   display: flex;
+  color: ${({ theme }) => theme.textSoft};
 `;
 
 const Over = styled.button`
@@ -69,6 +73,7 @@ width : 95%;
 float: left;
 padding: 5px;
 display: flex;
+color: ${({ theme }) => theme.textSoft};
 
 `
 
@@ -79,6 +84,7 @@ const Input = styled.input`
   outline: none;
   padding: 5px;
   width: 100%;
+  color: ${({ theme }) => theme.textSoft};
 `;
 
 const Send = styled.div`
@@ -90,6 +96,11 @@ padding: 5px 15px;
   display: flex;
   align-items: center;
   gap: 5px;
+  color: ${({ theme }) => theme.textSoft};
+`
+const Divv = styled.div`
+color: ${({ theme }) => theme.textSoft};
+
 `
 const Comment = ({ comment , setComments, videoId}) => {
   const [channel, setChannel] = useState({});
@@ -176,7 +187,7 @@ const Comment = ({ comment , setComments, videoId}) => {
       <>
     { currentUser.name === channel.name ? 
     <>
-    <div>
+    <Divv>
       <IconButton
         aria-label="more"
         id="long-button"
@@ -185,7 +196,9 @@ const Comment = ({ comment , setComments, videoId}) => {
         aria-haspopup="true"
         onClick={handleClick}
       >
+        <Divv>
         <MoreVertIcon />
+        </Divv>
       </IconButton>
       <Menu
         id="long-menu"
@@ -209,7 +222,7 @@ const Comment = ({ comment , setComments, videoId}) => {
           </MenuItem>
         
       </Menu>
-    </div>
+    </Divv>
      </>
       :  ""}
       </>
