@@ -44,7 +44,8 @@ export default function Demo( {setOpennn }) {
 
   const handleClickVariant = (variant)  => {
     enqueueSnackbar('Logged in successfully', { variant });
-  };
+  }; 
+
     const handleClickVariantf = (variant) => {
       enqueueSnackbar('Login failed', { variant } );
     };
@@ -54,6 +55,15 @@ export default function Demo( {setOpennn }) {
       const handleClickVariantfff = (variant) => {
         enqueueSnackbar('Registration failed', { variant } );
       };
+     
+      const handleLoginn = () =>{
+        const handleClickVariantt = (variant)  => {
+          enqueueSnackbar('This feature is developing please choose another login method.. :)))', { variant });
+          
+
+        };
+        handleClickVariantt('info')
+      }
   const handleLogin = async (e) => {
       e.preventDefault();
     dispatch(loginStart());
@@ -131,14 +141,14 @@ export default function Demo( {setOpennn }) {
       <LoginWith>OR LOGIN WITH</LoginWith>
       <HorizontalRule />
       <IconsContainer>
+      <StyledIcon style={{"background" : "linear-gradient(to right, white 0%, white 50%)"}}>
+          <FcGoogle onClick={signInWithGoogle} />
+        </StyledIcon>
         <StyledIcon style={{"background" : "linear-gradient(to right, #0546A0 0%, #0546A0 40%, #663FB6 100%)"}}>
-          <FaFacebookF />
+          <FaFacebookF onClick={handleLoginn}/>
         </StyledIcon>
         <StyledIcon style={{"background" : "linear-gradient(to right, #A12AC4 0%, #ED586C 40%, #F0A853 100%)"}}>
-          <FaInstagram />
-        </StyledIcon>
-        <StyledIcon style={{"background" : "linear-gradient(to right, white 0%, white 50%)"}}>
-          <FcGoogle onClick={signInWithGoogle} />
+          <FaInstagram onClick={handleLoginn}/>
         </StyledIcon>
       </IconsContainer> 
       <br />

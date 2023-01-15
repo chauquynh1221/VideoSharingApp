@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import Menu from "./components/Menu";
 import Navbar from "./components/Navbar";
@@ -14,6 +14,7 @@ import Channel from "./pages/Channel";
 import { SnackbarProvider} from 'notistack';
 import { fetchStart } from "./redux/videoSlice";
 import Homecustom from "./pages/Homecustom";
+import { BrowserView, MobileView } from 'react-device-detect';
 
 const Container = styled.div`
   display: flex;
@@ -30,10 +31,19 @@ const Wrapper = styled.div`
 function App() {
   const [darkMode, setDarkMode] = useState(true);
   const { currentUser } = useSelector((state) => state.user);
+  const [isDesktop, setIsDesktop] = useState(false);
 
+  useEffect(() => {
+    if (window.innerWidth > 768) {
+      setIsDesktop(true);
+    }
+  }, []);
   return (
     <SnackbarProvider>
-    <ThemeProvider theme={darkMode ? darkTheme  : lightTheme }>
+       <>
+      <BrowserView>
+      {isDesktop ?
+      <ThemeProvider theme={darkMode ? darkTheme  : lightTheme }>
       <Container>
         <BrowserRouter>
           <Menu darkMode={darkMode} setDarkMode={setDarkMode} />
@@ -66,6 +76,13 @@ function App() {
         </BrowserRouter>
       </Container>
     </ThemeProvider>
+     :  <p>This app only works on desktop</p>}
+      </BrowserView>
+      <MobileView>
+      <p>This app only works on desktop</p>
+      </MobileView>
+    </>
+    
     </SnackbarProvider>
   );
 }
