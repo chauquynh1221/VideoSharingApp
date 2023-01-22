@@ -56,8 +56,6 @@ function App() {
                   <Route path="trends" element={<Home type="trend" />} />
                   <Route path="subscriptions" element={<Home type="sub" />} />
                   <Route path=":slug" element={<Homecustom />} />
-                  
-
                   <Route path="search" element={<Search />} />
                   <Route path="myChannel">
                     <Route path=":id" element={<Channel />} />

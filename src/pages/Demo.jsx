@@ -35,8 +35,8 @@ export default function Demo( {setOpennn }) {
   var [name, setName] = useState("");
   var [email, setEmail] = useState("");
   var [password, setPassword] = useState("");
+  var [confirm, setConfirm] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
-
   const [type, setType] = useState(true)
   const dispatch = useDispatch();
   const navigate = useNavigate()
@@ -45,7 +45,6 @@ export default function Demo( {setOpennn }) {
   const handleClickVariant = (variant)  => {
     enqueueSnackbar('Logged in successfully', { variant });
   }; 
-
     const handleClickVariantf = (variant) => {
       enqueueSnackbar('Login failed', { variant } );
     };
@@ -106,17 +105,27 @@ export default function Demo( {setOpennn }) {
       });
   };
 
- 
+  const Confirm = () => {
+    const a = document.getElementById('confirm')
+    a.value === password ? setConfirm(true) : setConfirm(false)
+  }
   
   const handleSignup = async (e) => {
     e.preventDefault();
-    try {
-      await axiosInstance.post("/signup", { name,email, password })
-      handleClickVariantff('success')
-      setOpennn(false)
-    } catch (error) {
-      handleClickVariantfff('error')
+    console.log(confirm)
+    if(confirm){
+      try {
+        await axiosInstance.post("/signup", { name,email, password })
+        handleClickVariantff('success')
+        setOpennn(false)
+      } catch (error) {
+        handleClickVariantfff('error')
+      }
     }
+    else{
+      window.alert("Password confirmation failed")
+    }
+    
   }
   return (
     <div>
@@ -141,20 +150,18 @@ export default function Demo( {setOpennn }) {
       <LoginWith>OR LOGIN WITH</LoginWith>
       <HorizontalRule />
       <IconsContainer>
-      <StyledIcon style={{"background" : "linear-gradient(to right, white 0%, white 50%)"}}>
-          <FcGoogle onClick={signInWithGoogle} />
+      <StyledIcon onClick={signInWithGoogle} style={{"background" : "linear-gradient(to right, white 0%, white 50%)"}}>
+          <FcGoogle  />
         </StyledIcon>
-        <StyledIcon style={{"background" : "linear-gradient(to right, #0546A0 0%, #0546A0 40%, #663FB6 100%)"}}>
-          <FaFacebookF onClick={handleLoginn}/>
+        <StyledIcon onClick={handleLoginn} style={{"background" : "linear-gradient(to right, #0546A0 0%, #0546A0 40%, #663FB6 100%)"}}>
+          <FaFacebookF />
         </StyledIcon>
-        <StyledIcon style={{"background" : "linear-gradient(to right, #A12AC4 0%, #ED586C 40%, #F0A853 100%)"}}>
-          <FaInstagram onClick={handleLoginn}/>
+        <StyledIcon onClick={handleLoginn} style={{"background" : "linear-gradient(to right, #A12AC4 0%, #ED586C 40%, #F0A853 100%)"}}>
+          <FaInstagram />
         </StyledIcon>
       </IconsContainer> 
       <br />
       <LoginWith onClick={() => setType(false)} style={{"cursor": "pointer"}} >REGISTER</LoginWith>
-
-
     </MainContainer>
     : 
     <MainContainer >
@@ -163,26 +170,26 @@ export default function Demo( {setOpennn }) {
       <InputContainer>
         <StyledInput type="text" placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
         <StyledInput type="text" placeholder="Username" onChange={(e) => setName(e.target.value)}/>
-        <StyledInput type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
+        <StyledInput if = 'password' type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
+        <StyledInput  id = "confirm" type="password" placeholder="Confirm password" onChange={Confirm}/>
       </InputContainer>
-      <ButtonContainer>
+      <ButtonContainerr>
         <StyledButton onClick={handleSignup}>REGISTER</StyledButton>
-      </ButtonContainer>
+      </ButtonContainerr>
       <LoginWith>OR LOGIN WITH</LoginWith>
       <HorizontalRule />
       <IconsContainer>
-        <StyledIcon style={{"background" : "linear-gradient(to right, #0546A0 0%, #0546A0 40%, #663FB6 100%)"}}>
+      <StyledIcon onClick={signInWithGoogle} style={{"background" : "linear-gradient(to right, white 0%, white 50%)"}}>
+          <FcGoogle />
+        </StyledIcon>
+        <StyledIcon onClick={handleLoginn} style={{"background" : "linear-gradient(to right, #0546A0 0%, #0546A0 40%, #663FB6 100%)"}}>
           <FaFacebookF />
         </StyledIcon>
-        <StyledIcon style={{"background" : "linear-gradient(to right, #A12AC4 0%, #ED586C 40%, #F0A853 100%)"}}>
+        <StyledIcon onClick={handleLoginn} style={{"background" : "linear-gradient(to right, #A12AC4 0%, #ED586C 40%, #F0A853 100%)"}}>
           <FaInstagram />
-        </StyledIcon>
-        <StyledIcon style={{"background" : "linear-gradient(to right, white 0%, white 50%)"}}>
-          <FcGoogle onClick={signInWithGoogle}/>
         </StyledIcon>
       </IconsContainer> 
       <br />
-  
       <LoginWith onClick={() => setType(true)} style={{"cursor": "pointer"}} >LOGIN</LoginWith>
 
     </MainContainer>
@@ -194,7 +201,6 @@ export default function Demo( {setOpennn }) {
 }
 
 const StyledIcon = styled.div`
-
   height: 3.5rem;
   width: 3.5rem;
   background: ${(props) => props.background};
@@ -213,7 +219,7 @@ const MainContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: 80vh;
+  height: 82vh;
   width: 30vw;
   background: rgba(255, 255, 255, 0.15);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -272,6 +278,13 @@ const InputContainer = styled.div`
   width: 100%;
 `;
 
+const ButtonContainerr = styled.div`
+  margin: 2.5rem 0 1rem 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 const ButtonContainer = styled.div`
   margin: 1rem 0 2rem 0;
   width: 100%;
