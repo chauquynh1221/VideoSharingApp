@@ -17,13 +17,16 @@ const NewComment = styled.div`
 `;
 const Send = styled.div`
 padding: 5px 15px;
-  border: 1px solid ;
   border-radius: 10px;
   font-weight: 500;
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 5px;
+  background-color: ${({ theme }) => theme.bgLighter};
+
+
+
 `
 const Avatar = styled.img`
   width: 50px;
@@ -88,7 +91,7 @@ const Comments = ({videoId, handleClick}) => {
       <NewComment>
         {currentUser ? <Avatar src={currentUser.img} /> : "" }
         <Input  value={input}  onChange={handleChanges} id = "input" placeholder="Add a comment..." />
-        {currentUser ? <Send  onClick={send}>Send</Send> : <Send onClick={handleClickk}>Send</Send>}
+        {currentUser ? <Send  onClick={send}>Comment</Send> : <Send onClick={handleClickk}>Comment</Send>}
       </NewComment> 
       {comments.map((comment,index)=>(
         <Comment key={index} videoId = {videoId} setComments = {setComments}  comment={comment}/>

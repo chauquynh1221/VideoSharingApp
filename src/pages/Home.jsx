@@ -15,16 +15,17 @@ const Home = ({type}) => {
 
   const [showLoading, setShowLoading] = useState(true);
 
-  setTimeout(() => {
-    setShowLoading(false);
-  }, 1000);
+  // setTimeout(() => {
+  //   setShowLoading(false);
+  // }, 1000);
 
-  useEffect(() => {
-    setShowLoading(true)
+  useEffect(()   => {
     const fetchVideos = async () => {
+      setShowLoading(true)
       const res = await axiosInstance.get(`/video/${type}`);
       setVideos(res.data);
       setShowLoading(false)
+
     };
     fetchVideos();
   }, [type]);

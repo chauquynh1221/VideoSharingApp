@@ -58,8 +58,6 @@ export default function Demo( {setOpennn }) {
       const handleLoginn = () =>{
         const handleClickVariantt = (variant)  => {
           enqueueSnackbar('This feature is developing please choose another login method.. :)))', { variant });
-          
-
         };
         handleClickVariantt('info')
       }
@@ -69,16 +67,13 @@ export default function Demo( {setOpennn }) {
     try {
       const res = await axiosInstance.post("/signin", { name, password });
       dispatch(loginSuccess(res.data))
-      navigate("/")
       setOpennn(false)
       handleClickVariant('success')
     } catch (err) {
       dispatch(loginFailure());
       handleClickVariantf('error')
-
     }
   };
-
   const signInWithGoogle = async () => {
     dispatch(loginStart());
     signInWithPopup(auth, provider)
@@ -94,7 +89,6 @@ export default function Demo( {setOpennn }) {
             dispatch(loginSuccess(res.data));
             setOpennn(false)
             handleClickVariant('success')
-            navigate("/")
             
           });
       })
